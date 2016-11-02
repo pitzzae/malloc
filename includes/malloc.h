@@ -20,6 +20,33 @@
 # include <string.h>
 # include <stdint.h>
 
+typedef enum		e_mtype
+{
+	TINY,
+	SMALL,
+	LARGE
+}					t_mtype;
+
+typedef struct		s_block
+{
+	size_t			size;
+	struct t_block	*prev;
+	struct t_block	*next;
+	int				is_free;
+}					t_block;
+
+typedef struct		s_page
+{
+	t_mtype			type;
+	size_t			size;
+	struct t_page	*prev;
+	struct t_page	*next;
+	struct t_block	*first;
+	int				nb_block;
+}					t_page;
+
+
+
 void		ft_print_text(void);
 
 #endif
