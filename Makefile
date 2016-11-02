@@ -27,7 +27,7 @@ SRCS_DIR	= srcs
 OBJS_DIR	= objs
 INCL_DIR	= includes
 
-SRCS		= main.c
+SRCS		= malloc.c page.c page_type.c block.c block_alloc.c free.c
 
 OBJECTS		= $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 

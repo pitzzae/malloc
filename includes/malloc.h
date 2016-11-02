@@ -13,6 +13,18 @@
 #ifndef MALLOC_H
 # define MALLOC_H
 
+# define BLOCK_SIZE		(sizeof(t_block))
+# define BDATA(b)		((void*)((char*)b + sizeof(t_block) + 1))
+
+# define PAGE_SIZE		(sizeof(t_page))
+# define PDATA(p)		((void*)((char*)p + sizeof(t_page) + 1))
+
+# define TINY_LENGTH	(2 * getpagesize())
+# define TINY_ALLOC		128
+
+# define SMALL_LENGTH	(16 * getpagesize())
+# define SMALL_ALLOC	1024
+
 # include <stdlib.h>
 # include <sys/mman.h>
 # include <stdio.h>
@@ -30,8 +42,8 @@ typedef enum		e_mtype
 typedef struct		s_block
 {
 	size_t			size;
-	struct t_block	*prev;
-	struct t_block	*next;
+	struct s_block	*prev;
+	struct s_block	*next;
 	int				is_free;
 }					t_block;
 
@@ -39,13 +51,26 @@ typedef struct		s_page
 {
 	t_mtype			type;
 	size_t			size;
-	struct t_page	*prev;
-	struct t_page	*next;
-	struct t_block	*first;
+	struct s_page	*prev;
+	struct s_page	*next;
+	struct s_block	*first;
 	int				nb_block;
 }					t_page;
 
 
+t_mtype				page_type(size_t size);
+size_t				page_length(size_t size);
+size_t				page_size(t_mtype size);
+t_page				*first_page(void);
+void				init_block(void *ptr, size_t size);
+void				init_page(void *ptr, t_mtype type, size_t size);
+void				add_page(t_page *p);
+t_block				*block_alloc(size_t size);
+void				split_block(t_block *b, size_t mem_width);
+t_page				*block_parent_page(t_block *b);
+void				del_page(t_page *page);
+void				*malloc(size_t size);
+void				free(void *ptr);
 
 void		ft_print_text(void);
 

@@ -3,10 +3,16 @@
 
 int		main(void)
 {
-	t_page		*ptr;
+	char		*ptr;
 
 	(void)ptr;
 	printf("coucou\n");
-	printf("%d\n", getpagesize());
-	ft_print_text();
+	ptr = malloc(99999);
+	ptr[0] = 'a';
+	ptr[1] = 'a';
+	ptr[2] = 'a';
+	ptr[3] = 'a';
+	printf("%s\n", ptr);
+	free(ptr);
+	//printf("%s\n", ptr);
 }
