@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include <malloc.h>
 
-int	main(void)
+void		ft_print_text(void)
 {
-	printf("loop\n");
+	printf("print");
 }
