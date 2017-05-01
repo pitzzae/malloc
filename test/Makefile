@@ -12,7 +12,7 @@
 
 NAME		= test_lib
 
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 
 SRCS		= main.c
 
@@ -23,8 +23,8 @@ all: ${NAME}
 $(NAME):
 	make -j 8 -C ../
 	@echo "Make $(NAME)"
-	#@gcc $(CFLAGS) -o $(NAME) $(SRCS) ../libft_malloc.so
-	@gcc $(CFLAGS) -o $(NAME) $(SRCS) /tmp/malloc-42/libmalloc/libft_malloc.so
+	#@gcc $(CFLAGS) -o $(NAME) $(SRCS) `pwd`/../libft_malloc.so
+	@gcc $(CFLAGS) -o $(NAME) $(SRCS) `pwd`/../libft_malloc.so
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Delete $(NAME)"
