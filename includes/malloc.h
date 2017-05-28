@@ -23,9 +23,10 @@
 # define TINY_ALLOC		128
 
 # define SMALL_LENGTH	(16 * getpagesize())
-# define SMALL_ALLOC	1024
+# define SMALL_ALLOC	512
 
 # include <stdlib.h>
+# include "libft.h"
 # include <sys/mman.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -71,7 +72,7 @@ t_page				*block_parent_page(t_block *b);
 void				del_page(t_page *page);
 void				*malloc(size_t size);
 void				free(void *ptr);
+void				get_block_len(t_block *beg, size_t size);
 
-void		ft_print_text(void);
 
 #endif

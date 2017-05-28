@@ -12,9 +12,9 @@
 
 NAME		= test_lib
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -Wunused-function
 
-SRCS		= main.c
+SRCS		= main2.c
 
 .PHONY: all
 
@@ -23,8 +23,8 @@ all: ${NAME}
 $(NAME):
 	make -j 8 -C ../
 	@echo "Make $(NAME)"
-	#@gcc $(CFLAGS) -o $(NAME) $(SRCS) `pwd`/../libft_malloc.so
-	@gcc $(CFLAGS) -o $(NAME) $(SRCS) `pwd`/../libft_malloc.so
+	#@gcc $(CFLAGS) -o $(NAME) $(SRCS) `pwd`/../libft_malloc.so -I./../includes -L./../libft -lft
+	@gcc $(CFLAGS) -o $(NAME) $(SRCS) `pwd`/../libft_malloc.so -I./../includes -L./../libft -lft
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Delete $(NAME)"

@@ -42,36 +42,62 @@ static t_block	*search_ptr(void *ptr)
 	return (NULL);
 }
 
+void		get_block_len(t_block *beg, size_t size)
+{
+	t_block	*end;
+	int		size_free;
+	int		nb;
+
+	size_free = 0;
+	nb = 0;
+	end = beg;
+	while (end->prev != NULL)
+		end = end->prev;
+	while (end->next != NULL)
+	{
+		size_free += end->size;
+		nb++;
+		end = end->next;
+	}
+	end->size = page_length(size) - (size_free + nb * BLOCK_SIZE) - PAGE_SIZE;
+}
+
 static t_block	*fusion_block(t_block *beg)
 {
 	t_block	*end;
+	int		size_free;
 
+	size_free = 0;
 	end = beg;
-	while (beg->prev != NULL && beg->prev->is_free)
+	while (beg != NULL && beg->prev != NULL && beg->prev->is_free)
+	{
 		beg = beg->prev;
+		size_free += beg->size + BLOCK_SIZE;
+	}
 	while (end->next != NULL && end->next->is_free)
+	{
 		end = end->next;
+		size_free += end->size + BLOCK_SIZE;
+	}
 	if (beg == end)
 	{
 		beg->is_free = 1;
 		return (beg);
 	}
 	beg->size = BDATA(end) + end->size - BDATA(beg);
+	beg->size = size_free;
 	beg->next = end->next;
 	beg->is_free = 1;
+
 	return (beg);
 }
 
 void			check_page(t_block *b)
 {
 	t_page	*page;
-	t_block	*first;
 
 	page = block_parent_page(b);
-	first = page->first;
-	if (first != NULL &&
-			first->is_free &&
-			first->next == NULL)
+	if (page != NULL && page->first != NULL && page->first->is_free && page->first->next == NULL)
 		del_page(page);
 }
 
@@ -82,6 +108,7 @@ void			free(void *ptr)
 	if (ptr == NULL)
 		return ;
 	b = search_ptr(ptr);
+	get_block_len(b, b->size);
 	if (b == NULL)
 		return ;
 	b = fusion_block(b);

@@ -85,5 +85,6 @@ void	*malloc(size_t size)
 	t_block	*b;
 
 	b = malloc_b(size);
+	get_block_len(b, size);
 	return (BDATA(b));
 }
