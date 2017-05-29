@@ -6,17 +6,11 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/02 10:25:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2016/11/02 10:48:14 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/05/30 00:06:11 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
-ifeq ($(HOSTTYPE),)
-	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
-endif
-
-PWD 		= `pwd`
-
-LIBFT_MALLOC	= ./libft_malloc_$(HOSTTYPE).so
+LIBFT_MALLOC	= libft_malloc_x86_64_Darwin.so
 
 NAME		= test_lib
 
@@ -32,7 +26,7 @@ $(NAME):
 	make -j 8 -C ../
 	@echo "Make $(NAME)"
 	#@gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_MALLOC) -I./../includes -L./../libft -lft
-	@gcc $(CFLAGS) -o $(NAME) $(SRCS) -L$(LIBFT_MALLOC) -I./../includes -L./../libft -lft -lft_malloc
+	@gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_MALLOC) -I./../includes -L./../libft -lft
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Delete $(NAME)"

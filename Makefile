@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/02 10:25:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2016/11/02 10:48:14 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/05/30 00:05:58 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -27,7 +27,8 @@ SRCS_DIR	= srcs
 OBJS_DIR	= objs
 INCL_DIR	= includes
 
-SRCS		= malloc.c page.c page_type.c block.c block_alloc.c free.c
+SRCS		= malloc.c page.c page_type.c block.c block_alloc.c free.c \
+			show_alloc_mem.c
 
 OBJECTS		= $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
@@ -38,8 +39,7 @@ all: ${NAME}
 $(NAME): $(OBJECTS)
 	@make -j 8 -C $(LIB_DIR)
 	@echo "Make $(NAME)"
-	@gcc $(DLFLAGS) -o $@ $(OBJECTS)
-	@rm -f libft_malloc.so
+	@gcc $(DLFLAGS) -o $@ $(OBJECTS) -I./includes -L./libft -lft
 	@ln -s $(NAME) libft_malloc.so
 	@echo libft_malloc.so now link to $(NAME)
 

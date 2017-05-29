@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/02 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2016/11/02 15:11:42 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/05/29 12:23:14 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/05/30 00:11:56 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
+#include "libft.h"
+
 static void show_block(t_block *b, int *len)
 {
 	while(b != NULL)

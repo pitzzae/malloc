@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 11:18:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2016/06/06 04:26:30 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/05/30 00:05:35 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -30,7 +30,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	ft_lst_env_new.c ft_lst_to_env.c ft_lst_get_env.c ft_lst_edit_env.c \
 	ft_lst_add_env.c ft_lst_rm_env.c ft_strsplit_len.c ft_str_replace_str.c \
 	ft_strsub_free.c ft_myputchar.c ft_lstaddend_free.c ft_udel.c \
-	ft_strocur_slash.c ft_stradd_slash.c ft_tabdup.c
+	ft_strocur_slash.c ft_stradd_slash.c ft_tabdup.c ft_putadd.c
 
 CFLAGS = -Wall -Wextra -Werror
 
