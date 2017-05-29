@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 #include <stdio.h>
 
 t_lstenv		*ft_lst_env_new(char **env, t_lstenv **t_env, size_t pos)

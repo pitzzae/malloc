@@ -49,7 +49,7 @@ $(NAME): $(OBJS)
 $(O_DIR)/%.o: ./srcs/%.c
 	@mkdir -p $(O_DIR)
 	@printf "."
-	@gcc $(CFLAGS) -c $< -I./includes -o $@
+	@gcc $(CFLAGS) -c $< -I../includes -o $@
 
 clean:
 	@rm -rf $(O_DIR)

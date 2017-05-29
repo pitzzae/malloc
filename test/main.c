@@ -1,66 +1,45 @@
-#include "../includes/malloc.h"
-/* Pour les constantes EXIT_SUCCESS et EXIT_FAILURE */
-#include <stdlib.h>
-/* Pour fprintf() */
-#include <stdio.h>
-/* Pour fork() */
-#include <unistd.h>
-/* Pour perror() et errno */
-#include <errno.h>
-/* Pour le type pid_t */
-#include <sys/types.h>
+#include "libft.h"
+#include "malloc.h"
 
-typedef struct		s_ptr
+void	test_malloc(char *string1, char *string2, int fre)
 {
-	char			*string1;
-	char			*string2;
-	char			*string3;
-	struct s_ptr	*next;
-}					t_ptr;
+	int		lenght;
 
-void use_ram(void)
-{
-	t_ptr	*ptr;
-	t_ptr	*ptr_tmp;
+	lenght = 0;
+	string1 = ft_strjoin("coucou ", "cest moi\n");
+	string2 = ft_strjoin("coucou ", "cest moi\n");
+	while (lenght < 50)
+	{
+		//ft_putstr("string1: ");
+		//ft_putendl(string1);
+		//ft_putstr("string2: ");
+		//ft_putendl(string2);
+		//ft_putnbr((ft_strlen(string1) + ft_strlen(string2)) * sizeof(char));
+		string2 = ft_strjoin_free(string2, string1, 1);
+		//ft_putstr("\nstring-join: ");
+		//ft_putendl(string2);
+		lenght++;
+		//ft_putstr("\n>>end\n");
 
-	ptr = malloc(sizeof(t_ptr));
-	ptr->string1 = malloc(sizeof(char) * 10000);
-	ptr->string1[0] = '\0';
-	ptr->string2 = malloc(sizeof(char) * 10000);
-	ptr->string2[0] = '\0';
-	ptr->string3 = malloc(sizeof(char) * 10000);
-	ptr->string3[0] = '\0';
-	ptr_tmp = ptr;
-	while ((ptr->next = malloc(sizeof(t_ptr))))
-	{
-		ptr->string1 = malloc(sizeof(char) * 10000);
-		ptr->string1[0] = '\0';
-		ptr->string2 = malloc(sizeof(char) * 10000);
-		ptr->string2[0] = '\0';
-		ptr->string3 = malloc(sizeof(char) * 10000);
-		ptr->string3[0] = '\0';
-		ptr = ptr->next;
 	}
-	while (ptr_tmp->next)
+	ft_putendl("");
+	show_alloc_mem();
+	//ft_putendl(string2);
+	//ft_putnbr(ft_strlen(string2));
+	if (fre == 1)
 	{
-		ptr = ptr_tmp->next;
-		free(ptr_tmp->string1);
-		free(ptr_tmp->string2);
-		free(ptr_tmp->string3);
-		free(ptr_tmp);
-		ptr_tmp = ptr;
+		free(string1);
+		free(string2);
 	}
+	ft_putendl("all free");
+	show_alloc_mem();
 }
-
 
 int		main(void)
 {
-	pid_t pid[3];
-
-	(void)pid[0];
-	pid[0] = fork();
-	pid[1] = fork();
-	use_ram();
-	use_ram();
-	use_ram();
+	char	*string1 = NULL;
+	char	*string2 = NULL;
+	test_malloc(string1, string2, 0);
+	test_malloc(string1, string2, 1);
+	test_malloc(string1, string2, 1);
 }

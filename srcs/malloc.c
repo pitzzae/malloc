@@ -20,7 +20,7 @@ void	split_block(t_block *b, size_t mem_width)
 		return ;
 	if (mem_width < b->size + BLOCK_SIZE * 2)
 	{
-		b->size = mem_width - BLOCK_SIZE;
+		b->size = mem_width - BLOCK_SIZE * 2;
 		return ;
 	}
 	nb = (t_block*)(BDATA(b) + b->size - 1);

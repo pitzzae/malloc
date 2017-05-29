@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   page_type.c                                        :+:      :+:    :+:   */
+/*   show_alloc_mem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,39 +11,50 @@
 /* ************************************************************************** */
 
 #include "malloc.h"
-
-char		*page_name(t_mtype type)
+static void show_block(t_block *b, int *len)
 {
-	if (type == TINY)
-		return ("TINY");
-	if (type == SMALL)
-		return ("SMALL");
-	return ("LARGE");
+	while(b != NULL)
+	{
+		if (b->is_free == 0 || b->is_free == 1)
+		{
+			ft_putadd(b);
+			ft_putstr(" - ");
+			ft_putadd(b + b->size);
+			ft_putstr(" : ");
+			ft_putnbr(b->size);
+			if (b->is_free == 1)
+				ft_putstr(" free");
+			ft_putendl(" octets");
+			len[0] += b->size;
+		}
+		b = b->next;
+	}
 }
 
-t_mtype		page_type(size_t size)
+static void show_page(t_page *p, int *len)
 {
-	if (size <= TINY_ALLOC)
-		return (TINY);
-	if (size <= SMALL_ALLOC)
-		return (SMALL);
-	return (LARGE);
+	ft_putstr(page_name(p->type));
+	ft_putstr(" : ");
+	ft_putadd(p);
+	ft_putstr("\n");
+    show_block(p->first, len);
+	if (p->next != NULL)
+	{
+		p = p->next;
+		show_page(p, len);
+	}
 }
 
-size_t		page_length(size_t size)
+void        show_alloc_mem(void)
 {
-	if (size <= TINY_ALLOC)
-		return (TINY_LENGTH);
-	if (size <= SMALL_ALLOC)
-		return (SMALL_LENGTH);
-	return (size + PAGE_SIZE + BLOCK_SIZE * 2);
-}
+    t_page	*p;
+	int 	len;
 
-size_t		page_size(t_mtype size)
-{
-	if (size == TINY)
-		return (TINY_LENGTH);
-	if (size == SMALL)
-		return (SMALL_LENGTH);
-	return (size + PAGE_SIZE);
+	len = 0;
+    p = first_page();
+	if (p != NULL)
+    	show_page(p, &len);
+	ft_putstr("Total : ");
+	ft_putnbr(len);
+	ft_putendl(" octets");
 }
