@@ -27,7 +27,7 @@ size_t		page_length(size_t size)
 		return (TINY_LENGTH);
 	if (size <= SMALL_ALLOC)
 		return (SMALL_LENGTH);
-	return (size + PAGE_SIZE);
+	return (size + PAGE_SIZE + BLOCK_SIZE);
 }
 
 size_t		page_size(t_mtype size)
@@ -36,5 +36,5 @@ size_t		page_size(t_mtype size)
 		return (TINY_LENGTH);
 	if (size == SMALL)
 		return (SMALL_LENGTH);
-	return (size);
+	return (size + PAGE_SIZE);
 }

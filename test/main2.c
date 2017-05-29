@@ -13,7 +13,7 @@ int		main(void)
 	lenght = 0;
 	string1 = ft_strjoin("coucou ", "cest moi\n");
 	string2 = ft_strjoin("coucou ", "cest moi\n");
-	while (lenght < 5000)
+	while (lenght < 50000)
 	{
 		//printf("%zu\n", ft_strlen(string1) + ft_strlen(string2));
 		//printf("%s\n\n%s", string1, string2);

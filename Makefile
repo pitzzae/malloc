@@ -45,7 +45,7 @@ $(NAME): $(OBJECTS)
 
 $(OBJS_DIR)/%.o: $(addprefix $(SRCS_DIR)/,%.c)
 	@mkdir -p $(OBJS_DIR)
-	$(CC) -c -o $@ $(CFLAGS) $^ -O0 -g  -I $(INCL_DIR)/ -L$(LIB_DIR) -lft
+	$(CC) -c -o $@ $(CFLAGS) $^ -O0 -g  -I $(INCL_DIR)/
 
 fclean: clean
 	@rm -f $(NAME)
