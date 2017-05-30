@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/02 10:25:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2017/05/30 00:06:11 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/05/30 06:24:46 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,7 @@ NAME		= test_lib
 
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= main2.c
+SRCS		= main.c
 
 .PHONY: all
 

@@ -6,11 +6,30 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:04:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 03:15:14 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/30 22:08:40 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
+
+static void		split_block(t_block *b, size_t mem_width)
+{
+	t_block	*nb;
+
+	if (b->size == mem_width)
+		return ;
+	if (mem_width < b->size + BLOCK_SIZE * 2)
+	{
+		b->size = mem_width - BLOCK_SIZE;
+		return ;
+	}
+	nb = (t_block*)(BDATA(b) + b->size - 1);
+	init_block(nb, mem_width - BLOCK_SIZE * 2 - b->size);
+	nb->next = b->next;
+	b->next = nb;
+	nb->prev = b;
+	nb->is_free = 1;
+}
 
 static t_page	*page_alloc(size_t size)
 {
