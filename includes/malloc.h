@@ -50,13 +50,13 @@ typedef struct		s_page
 	struct s_page	*prev;
 	struct s_page	*next;
 	struct s_block	*first;
-	int				nb_block;
 }					t_page;
 
 
 t_mtype				page_type(size_t size);
 size_t				page_length(size_t size);
 size_t				page_size(t_mtype size);
+char				*page_name(t_mtype size);
 t_page				*first_page(void);
 void				init_block(void *ptr, size_t size);
 void				init_page(void *ptr, t_mtype type, size_t size);
@@ -70,7 +70,5 @@ void				*realloc(void *ptr, size_t size);
 void				free(void *ptr);
 void                show_alloc_mem(void);
 void				get_block_len(t_block *beg, size_t size);
-char				*page_name(t_mtype size);
-
 
 #endif
