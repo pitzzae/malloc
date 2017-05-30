@@ -12,6 +12,15 @@
 
 LIBFT_MALLOC	= `pwd`/../libft_malloc.so
 
+ifeq ($(HOSTTYPE),)
+	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
+endif
+
+ifeq ($(HOSTTYPE), x86_64_Darwin)
+	ADD_LINK = @ln -s $(LIBFT_MALLOC) ./libft_malloc_$(HOSTTYPE).so
+	DEL_LINK = @rm -rf ./libft_malloc_$(HOSTTYPE).so
+endif
+
 NAME		= test_lib
 
 CFLAGS		= -Wall -Wextra -Werror
@@ -27,12 +36,15 @@ $(NAME):
 	@echo "Make $(NAME)"
 	#@gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_MALLOC) -I./../includes -L./../libft -lft
 	@gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFT_MALLOC) -I./../includes -L./../libft -lft
+	$(ADD_LINK)
+
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Delete $(NAME)"
+	$(DEL_LINK)
 
 clean:
 	@make -C ../ fclean
-	@echo "Delete LIB_NAME"
+	@echo "Delete libft_malloc_$(HOSTTYPE).so"
 
 re: fclean all

@@ -14,6 +14,10 @@ ifeq ($(HOSTTYPE),)
 	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
 endif
 
+ifeq ($(HOSTTYPE), x86_64_Darwin)
+	OSX_LIBFT_FLAG = -L./libft -lft
+endif
+
 NAME		= libft_malloc_$(HOSTTYPE).so
 
 LIB_DIR		= ./libft
@@ -39,7 +43,7 @@ all: ${NAME}
 $(NAME): $(OBJECTS)
 	@make -j 8 -C $(LIB_DIR)
 	@echo "Make $(NAME)"
-	@gcc $(DLFLAGS) -o $@ $(OBJECTS) -I./includes
+	@gcc $(DLFLAGS) -o $@ $(OBJECTS) -I./includes $(OSX_LIBFT_FLAG)
 	@ln -s $(NAME) libft_malloc.so
 	@echo libft_malloc.so now link to $(NAME)
 
