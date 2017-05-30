@@ -1,26 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 00:09:07 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 00:09:11 by gtorresa         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "malloc.h"
 #include "libft.h"
+#include "malloc.h"
 
 void	test_malloc(char *string1, char *string2, int fre)
 {
 	int		lenght;
 
 	lenght = 0;
-	string1 = ft_strjoin("coucou ", "cest moi\n");
-	string2 = ft_strjoin("coucou ", "cest moi\n");
-	while (lenght < 5000)
+	string1 = ft_strjoin("                    ", "                    ");
+	string2 = ft_strjoin(string1, string1);
+	string2 = realloc(string2, 10);
+	show_alloc_mem();
+	while (lenght < 2)
 	{
 		//ft_putstr("string1: ");
 		//ft_putendl(string1);

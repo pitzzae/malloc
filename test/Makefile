@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-LIBFT_MALLOC	= libft_malloc_x86_64_Darwin.so
+LIBFT_MALLOC	= `pwd`/../libft_malloc.so
 
 NAME		= test_lib
 

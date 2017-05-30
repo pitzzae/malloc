@@ -28,7 +28,7 @@ OBJS_DIR	= objs
 INCL_DIR	= includes
 
 SRCS		= malloc.c page.c page_type.c block.c block_alloc.c free.c \
-			show_alloc_mem.c
+			show_alloc_mem.c realloc.c
 
 OBJECTS		= $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
@@ -39,7 +39,7 @@ all: ${NAME}
 $(NAME): $(OBJECTS)
 	@make -j 8 -C $(LIB_DIR)
 	@echo "Make $(NAME)"
-	@gcc $(DLFLAGS) -o $@ $(OBJECTS) -I./includes -L./libft -lft
+	@gcc $(DLFLAGS) -o $@ $(OBJECTS) -I./includes
 	@ln -s $(NAME) libft_malloc.so
 	@echo libft_malloc.so now link to $(NAME)
 
