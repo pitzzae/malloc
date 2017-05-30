@@ -16,7 +16,7 @@ NAME		= test_lib
 
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= main.c
+SRCS		= main2.c
 
 .PHONY: all
 

@@ -45,7 +45,6 @@ t_block *search_freed_block(size_t size)
 {
 	t_page		*p;
 	t_block		*b;
-	size_t		mem_width;
 	t_mtype		type;
 
 	type = page_type(size);
@@ -61,9 +60,8 @@ t_block *search_freed_block(size_t size)
 	}
 	if (b == NULL)
 		return (NULL);
-	mem_width = b->size + BLOCK_SIZE;
 	b->size = size;
-	split_block(b, mem_width);
+	split_block(b, size);
 	b->is_free = 0;
 	return (b);
 }

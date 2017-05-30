@@ -105,9 +105,9 @@ void	*realloc(void *ptr, size_t size)
 	t_block	*b;
 
 	b = search_ptr(ptr);
-	if (size > b->size)
+	if (b != NULL && size > b->size)
 		return (realloc_inc(ptr, b, size));
-	else if (size < b->size)
+	else if (b != NULL && size < b->size)
 		return (realloc_dec(ptr, b, size));
 	return (ptr);
 }
