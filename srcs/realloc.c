@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 17:50:26 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 21:45:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ static t_block	*search_ptr_in_page(t_page *page, void *ptr)
 	{
 		if (ptr == BDATA(iter))
 			return (iter);
+		if (iter->is_free > 1)
+		{
+			iter->next = NULL;
+			check_last_block_size(page, iter);
+		}
 		iter = iter->next;
 	}
 	return (NULL);
@@ -48,9 +53,11 @@ static void	*realloc_inc(void *ptr, t_block *b, size_t size)
 	t_block	*next;
 	size_t 	old_size;
 	void	*tmp;
+	t_page	*p;
 
+	p = first_page();
 	if (b->next != NULL && b->next->is_free == 1 &&
-			b->next->size > size - b->size)
+			(b->next->size + b->size + BLOCK_SIZE) - size > 0)
 	{
 		old_size = b->next->size;
 		next = b->next->next;
@@ -65,7 +72,8 @@ static void	*realloc_inc(void *ptr, t_block *b, size_t size)
 	{
 		tmp = ptr;
 		ptr = malloc(size);
-		ft_memcpy(ptr, tmp, b->size + BLOCK_SIZE);
+		ft_bzero(ptr, size);
+		ft_memcpy(ptr, tmp, b->size - 1);
 		free(tmp);
 	}
 	return (ptr);

@@ -6,12 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 00:04:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 21:39:50 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LIBFT_H
-# define FT_LIBFT_H
 # define FT_LIBFT_H
 # define BUF_SIZE 6400
 # define FD_SIZE 10
@@ -49,7 +48,7 @@ typedef struct		s_date
 }					t_date;
 
 int					get_next_line(int const fd, char **line);
-char				*ft_tab_to_str(char **str);
+
 size_t				ft_lstlen(t_list *lst);
 t_list				*ft_lstnew(void const *c, size_t cz);
 t_list				*ft_lstnew_free(void *c, size_t cz);

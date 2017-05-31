@@ -6,11 +6,12 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:22:15 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 17:51:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 21:43:22 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
+#include "libft.h"
 
 static t_block	*search_ptr_in_page(t_page *page, void *ptr)
 {
@@ -59,7 +60,7 @@ void			free(void *ptr)
 	if (ptr == NULL)
 		return ;
 	b = search_ptr(ptr);
-	b->is_free = 1;
-	if (b != NULL)
-		check_page(b);
+	if (b)
+		b->is_free = 1;
+	check_page(b);
 }

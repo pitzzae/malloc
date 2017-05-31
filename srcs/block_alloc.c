@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:04:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 17:49:43 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 21:27:24 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_page	*page_alloc(size_t size)
 			MAP_PRIVATE | MAP_ANON,
 			-1,
 			0);
-	init_page(to_return, page_len, size);
+	init_page(to_return, (t_mtype) page_len, size);
 	add_page(to_return);
 	return (to_return);
 }
@@ -55,7 +55,7 @@ static t_block	*block_insert(t_page *p, size_t size)
 	b = (t_block*)PDATA(p);
 	init_block(b, size);
 	if (p->type != LARGE)
-		split_block(b, page_size(p->size) - PAGE_SIZE);
+		split_block(b, page_size((t_mtype) p->size) - PAGE_SIZE);
 	p->first = b;
 	return (b);
 }
