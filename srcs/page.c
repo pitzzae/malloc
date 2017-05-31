@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "malloc.h"
-#include "libft.h"
 
 static t_page	**get_first_page(void)
 {
@@ -50,10 +49,6 @@ void			del_page(t_page *page)
 		*get_first_page() = page->next;
 	if (page->next != NULL)
 		page->next->prev = page->prev;
-	ft_putadd(page);
-	ft_putendl(" munmap");
-	show_alloc_block();
-	ft_putendl("");
 	munmap(page, page->size);
 }
 

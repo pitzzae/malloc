@@ -51,7 +51,7 @@ free_then_use( void )
 #endif
 	p = malloc( 30 );
 	free( p );
-	show_alloc_mem();
+	//show_alloc_mem();
 	ft_strcpy( p, "Hello There!" );
 	p = malloc( 30 );
 	free( p );
@@ -105,9 +105,9 @@ just_leak( void )
 
 	for ( i = 0; i < 10; i++ )
 	{
-		show_alloc_mem();
+		//show_alloc_mem();
 		memarray[i] = (void *)realloc( memarray[i], 75 );
-		show_alloc_mem();
+		//show_alloc_mem();
 	}
 }
 
@@ -154,7 +154,6 @@ malloc_free_cycle( void )
 void	test_malloc(char *string1, char *string2, int fre)
 {
 	int		lenght;
-	int 	i = 0;
 
 	lenght = 0;
 	string1 = ft_strjoin("                    ", "                    ");
@@ -163,8 +162,6 @@ void	test_malloc(char *string1, char *string2, int fre)
 	while (lenght < 500)
 	{
 		//show_alloc_mem();
-		if (lenght == 302)
-			i = 0;
 		string2 = ft_strjoin_free(string2, string1, 1);
 		lenght++;
 		//show_alloc_mem();

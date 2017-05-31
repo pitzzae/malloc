@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "malloc.h"
-#include "libft.h"
 
 static void	split_block(t_block *b, size_t mem_width)
 {
@@ -89,14 +88,6 @@ void	*malloc(size_t size)
 {
 	t_block	*b;
 
-	if (size == 322)
-		ft_putendl("bug");
-	ft_putnbr(size);
-	ft_putendl(" malloc before -------------");
-	show_alloc_block();
 	b = malloc_b(size);
-	ft_putendl("malloc after");
-	show_alloc_block();
-	ft_putendl("");
 	return (BDATA(b));
 }

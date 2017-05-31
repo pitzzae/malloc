@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "malloc.h"
-#include "libft.h"
 
 static t_block	*search_ptr_in_page(t_page *page, void *ptr)
 {
@@ -46,15 +45,11 @@ static t_block	*search_ptr(void *ptr)
 void			check_page(t_block *b)
 {
 	t_page	*page;
-	t_page	*tmp;
 
 	page = block_parent_page(b);
 	if (page != NULL && page->first != NULL && page->first->is_free &&
 			page->first->next == NULL)
-	{
 		del_page(page);
-		tmp = first_page();
-	}
 }
 
 void			free(void *ptr)
@@ -63,14 +58,8 @@ void			free(void *ptr)
 
 	if (ptr == NULL)
 		return ;
-	ft_putadd(ptr);
-	ft_putendl(" *ptr free before ------------");
-	show_alloc_block();
 	b = search_ptr(ptr);
 	b->is_free = 1;
-	ft_putendl("free after");
-	show_alloc_block();
-	ft_putendl("");
 	if (b != NULL)
 		check_page(b);
 }
