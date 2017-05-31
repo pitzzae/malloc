@@ -6,11 +6,12 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 03:15:36 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:49:56 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
+#include "libft.h"
 
 static t_page	**get_first_page(void)
 {
@@ -49,7 +50,11 @@ void			del_page(t_page *page)
 		*get_first_page() = page->next;
 	if (page->next != NULL)
 		page->next->prev = page->prev;
-	munmap(page, page->size + PAGE_SIZE);
+	ft_putadd(page);
+	ft_putendl(" munmap");
+	show_alloc_block();
+	ft_putendl("");
+	munmap(page, page->size);
 }
 
 void			add_page(t_page *new_page)

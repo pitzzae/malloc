@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:08:47 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:49:50 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,24 @@
 static void	split_block(t_block *b, size_t mem_width)
 {
 	t_block	*nb;
+	t_block	**btmp;
 
-	if (b->size == mem_width)
+	if (b->size == mem_width + BLOCK_SIZE)
 		return ;
-	nb = BDATA(b) + mem_width + BLOCK_SIZE;
-	init_block(nb, b->size - mem_width - BLOCK_SIZE);
-	nb->next = b->next;
-	b->next = nb;
-	b->size = mem_width;
-	nb->prev = b;
-	nb->is_free = 1;
+	if ((int)(b->size - mem_width - BLOCK_SIZE * 2) > 0)
+	{
+		nb = BDATA(b) + mem_width + BLOCK_SIZE;
+		btmp = &b->next;
+		nb->size = b->size - (int)mem_width - (int)BLOCK_SIZE;
+		if (btmp[0] == NULL || btmp[0]->is_free == 0)
+			nb->next = btmp[0];
+		else
+			nb->next = btmp[0]->next;
+		b->next = nb;
+		b->size = mem_width;
+		nb->prev = b;
+		nb->is_free = 1;
+	}
 }
 
 t_block 	*search_freed_block_in_page(t_page *p, size_t size)
@@ -51,6 +59,7 @@ t_block 	*search_freed_block(size_t size)
 	b = NULL;
 	while (p != NULL)
 	{
+		check_last_block_size(p, p->first);
 		if (p->type == type)
 			b = search_freed_block_in_page(p, size);
 		if (b != NULL)
@@ -80,6 +89,14 @@ void	*malloc(size_t size)
 {
 	t_block	*b;
 
+	if (size == 322)
+		ft_putendl("bug");
+	ft_putnbr(size);
+	ft_putendl(" malloc before -------------");
+	show_alloc_block();
 	b = malloc_b(size);
+	ft_putendl("malloc after");
+	show_alloc_block();
+	ft_putendl("");
 	return (BDATA(b));
 }

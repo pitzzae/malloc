@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:08:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:49:38 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ void		init_page(void *ptr, t_mtype size, size_t block_size)
 	page->first = NULL;
 }
 
+void		check_last_block_size(t_page *p, t_block *b)
+{
+	if (b != NULL && b->next == NULL && p != NULL)
+		b->size = (((long int)p + (long int)p->size - (long int)BDATA(b)) /
+				sizeof(char)) - PAGE_SIZE;
+}
+
 static void	remove_free_block(t_page *p)
 {
 	t_block	*b;
@@ -44,9 +51,9 @@ static void	remove_free_block(t_page *p)
 	size_t	size;
 
 	b = p->first;
-	while (b != NULL && b->next != NULL)
+	while (b != NULL)
 	{
-		if (b->is_free == 1 && b->next->is_free == 1)
+		if (b->next != NULL && b->is_free == 1 && b->next->is_free == 1)
 		{
 			tmp = BDATA(b) - BLOCK_SIZE;
 			size = b->size + b->next->size;
@@ -55,6 +62,8 @@ static void	remove_free_block(t_page *p)
 			tmp->next = b->next;
 			tmp->is_free = 1;
 		}
+		if (b->next == NULL)
+			check_last_block_size(p, b);
 		b = b->next;
 	}
 }

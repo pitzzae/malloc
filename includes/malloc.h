@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:10:17 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:49:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define PDATA(p)		((void*)((char*)p + sizeof(t_page)))
 
 # define TINY_LENGTH	(2 * getpagesize())
-# define TINY_ALLOC		1024
+# define TINY_ALLOC		128
 
 # define SMALL_LENGTH	(16 * getpagesize())
 # define SMALL_ALLOC	4096
@@ -69,5 +69,6 @@ void				*realloc(void *ptr, size_t size);
 void				free(void *ptr);
 void                show_alloc_mem(void);
 void        		show_alloc_block(void);
+void				check_last_block_size(t_page *p, t_block *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:09:00 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:50:26 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	*realloc_inc(void *ptr, t_block *b, size_t size)
 	{
 		tmp = ptr;
 		ptr = malloc(size);
-		ft_memcpy(ptr, tmp, b->size);
+		ft_memcpy(ptr, tmp, b->size + BLOCK_SIZE);
 		free(tmp);
 	}
 	return (ptr);

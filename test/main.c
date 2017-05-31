@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:13:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:51:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,31 +111,6 @@ just_leak( void )
 	}
 }
 
-
-void	test_malloc(char *string1, char *string2, int fre)
-{
-	int		lenght;
-
-	lenght = 0;
-	string1 = ft_strjoin("                    ", "                    ");
-	string2 = ft_strjoin(string1, string1);
-	string2 = realloc(string2, 10);
-	while (lenght < 50)
-	{
-		show_alloc_mem();
-		string2 = ft_strjoin_free(string2, string1, 1);
-		lenght++;
-		show_alloc_mem();
-	}
-	ft_putendl("");
-	if (fre == 1)
-	{
-		free(string1);
-		free(string2);
-	}
-	ft_putendl("all free");
-}
-
 void
 malloc_free_cycle( void )
 {
@@ -153,21 +128,55 @@ malloc_free_cycle( void )
 		free( memarray[i] );
 
 	for ( i = 0; i < 10; i++ )
+	{
 		memarray[i] = malloc( 45 );
+		ft_strcat(memarray[i], "stringstringstringstring");
+	}
+	for ( i = 0; i < 10; i++ )
+		free( memarray[i] );
+
+	for ( i = 0; i < 10; i++ )
+	{
+		memarray[i] = malloc( 55 );
+		ft_strcat(memarray[i], "stringstringstringstring");
+	}
 	for ( i = 0; i < 10; i++ )
 		free( memarray[i] );
 
 	for ( i = 0; i < 10; i++ )
 		memarray[i] = malloc( 55 );
+	//for ( i = 0; i < 10; i++ )
+	//	memarray[i] = (void *)realloc( memarray[i], 75 );
 	for ( i = 0; i < 10; i++ )
 		free( memarray[i] );
+}
 
-	for ( i = 0; i < 10; i++ )
-		memarray[i] = malloc( 55 );
-	for ( i = 0; i < 10; i++ )
-		memarray[i] = (void *)realloc( memarray[i], 75 );
-	for ( i = 0; i < 10; i++ )
-		free( memarray[i] );
+void	test_malloc(char *string1, char *string2, int fre)
+{
+	int		lenght;
+	int 	i = 0;
+
+	lenght = 0;
+	string1 = ft_strjoin("                    ", "                    ");
+	string2 = ft_strjoin(string1, string1);
+	string2 = realloc(string2, 10);
+	while (lenght < 500)
+	{
+		//show_alloc_mem();
+		if (lenght == 302)
+			i = 0;
+		string2 = ft_strjoin_free(string2, string1, 1);
+		lenght++;
+		//show_alloc_mem();
+		malloc_free_cycle();
+	}
+	ft_putendl("");
+	if (fre == 1)
+	{
+		free(string1);
+		free(string2);
+	}
+	ft_putendl("all free");
 }
 
 void
@@ -228,11 +237,16 @@ main( int argc, char **argv )
 		case 9:
 			test_malloc(string1, string2, 0);
 			test_malloc(string1, string2, 1);
-			//test_malloc(string1, string2, 1);
+			test_malloc(string1, string2, 1);
 			break;
 		case 10:
 			malloc_free_cycle();
 			break;
+		case 11:
+			test_malloc(string1, string2, 0);
+			test_malloc(string1, string2, 1);
+			malloc_free_cycle();
+			just_leak();
 		default:;
 	}
 	return 0;
