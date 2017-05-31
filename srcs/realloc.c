@@ -53,9 +53,7 @@ static void	*realloc_inc(void *ptr, t_block *b, size_t size)
 	t_block	*next;
 	size_t 	old_size;
 	void	*tmp;
-	t_page	*p;
 
-	p = first_page();
 	if (b->next != NULL && b->next->is_free == 1 &&
 			(b->next->size + b->size + BLOCK_SIZE) - size > 0)
 	{
