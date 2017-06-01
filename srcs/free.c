@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:22:15 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 21:43:22 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 17:31:27 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,5 @@ void			free(void *ptr)
 	if (ptr == NULL)
 		return ;
 	b = search_ptr(ptr);
-	if (b)
-		b->is_free = 1;
 	check_page(b);
 }

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:08:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 17:30:52 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,14 @@ void		check_last_block_size(t_page *p, t_block *b)
 static void	remove_free_block(t_page *p)
 {
 	t_block	*b;
-	t_block	*tmp;
-	size_t	size;
 
 	b = p->first;
 	while (b != NULL)
 	{
-		if (b->next != NULL && b->is_free == 1 && b->next->is_free == 1)
+		if (b->next != NULL && b->next->is_free == 1)
 		{
-			tmp = BDATA(b) - BLOCK_SIZE;
-			size = b->size + b->next->size;
-			b = b->next;
-			init_block(tmp, size);
-			tmp->next = b->next;
-			tmp->is_free = 1;
+			b->size += b->next->size + BLOCK_SIZE;
+			b->next = b->next->next;
 		}
 		if (b->next == NULL)
 			check_last_block_size(p, b);
