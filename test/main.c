@@ -271,6 +271,8 @@ main( int argc, char **argv )
 			test_malloc(string1, string2, 1);
 			malloc_free_cycle();
 			just_leak();
+			test_calloc();
+			break;
 		case 12:
 			test_calloc();
 		default:;
