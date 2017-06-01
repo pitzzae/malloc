@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:10:17 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 21:24:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_page				*block_parent_page(t_block *b);
 void				del_page(t_page *page);
 void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
+void				*calloc(size_t nmemb, size_t size);
 void				free(void *ptr);
 void                show_alloc_mem(void);
 void        		show_alloc_block(void);

@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/02 10:25:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2017/05/30 06:24:38 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/06/01 21:31:30 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -32,7 +32,7 @@ OBJS_DIR	= objs
 INCL_DIR	= includes
 
 SRCS		= malloc.c page.c page_type.c block.c block_alloc.c free.c \
-			show_alloc_mem.c realloc.c
+			show_alloc_mem.c realloc.c calloc.c
 
 OBJECTS		= $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 

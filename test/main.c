@@ -6,13 +6,38 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/01 18:53:46 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 21:24:42 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 #include "libft.h"
 #include <stdio.h>
+
+void	test_calloc(void)
+{
+	char *ptr;
+	int i, j;
+
+	i = 0;
+	j = 10;
+	ptr = calloc(j, sizeof(char));
+	ptr[0] = 'a';
+	show_alloc_block();
+	while (i < j)
+	{
+		ptr[i] = 'a' + i;
+		i++;
+	}
+	i = 0;
+	while (i < j)
+	{
+		ft_putchar(ptr[i]);
+		i++;
+	}
+	ft_putchar('\n');
+	free(ptr);
+}
 
 void
 duplicate_free( void )
@@ -51,7 +76,7 @@ free_then_use( void )
 #endif
 	p = malloc( 30 );
 	free( p );
-	show_alloc_mem();
+	//show_alloc_mem();
 	ft_strcpy( p, "Hello There!" );
 	p = malloc( 30 );
 	free( p );
@@ -87,7 +112,6 @@ just_leak( void )
 {
 	char *memarray[10];
 	int i;
-	atexit(dump_garbage);
 	for ( i = 0; i < 10; i++ )
 		memarray[i] = (void *)ft_strdup( "string" );
 
@@ -105,9 +129,9 @@ just_leak( void )
 
 	for ( i = 0; i < 10; i++ )
 	{
-		show_alloc_mem();
+		//show_alloc_mem();
 		memarray[i] = realloc(memarray[i], 75 );
-		show_alloc_mem();
+		//show_alloc_mem();
 	}
 }
 
@@ -207,9 +231,9 @@ main( int argc, char **argv )
 	char	*string2 = NULL;
 	if( argc < 2 ) {
 		dohelp();
-		exit( 0 );
+		return 0;
 	}
-	switch( atoi( argv[1] ) ) {
+	switch( ft_atoi( argv[1] ) ) {
 		case 1:
 			duplicate_free();
 			break;
@@ -247,6 +271,8 @@ main( int argc, char **argv )
 			test_malloc(string1, string2, 1);
 			malloc_free_cycle();
 			just_leak();
+		case 12:
+			test_calloc();
 		default:;
 	}
 	return 0;

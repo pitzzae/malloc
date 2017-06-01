@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 21:39:50 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 21:24:27 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 # define BUF_SIZE 6400
 # define FD_SIZE 10
 
+# include "malloc.h"
 # include <unistd.h>
-# include <string.h>
-# include <stdlib.h>
 # include <fcntl.h>
 
 typedef struct		s_list
@@ -42,9 +41,9 @@ typedef struct		s_date
 	int				min;
 	int				hour;
 	int				mday;
+	int 			year;
 	char			*sday;
 	char			*mon;
-	int				year;
 }					t_date;
 
 int					get_next_line(int const fd, char **line);
