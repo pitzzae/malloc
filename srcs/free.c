@@ -6,12 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:22:15 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/01 17:49:56 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 18:56:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
-#include "libft.h"
 
 static t_block	*search_ptr_in_page(t_page *page, void *ptr)
 {

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 21:27:17 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 18:53:46 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ malloc_free_cycle( void )
 	for ( i = 0; i < 10; i++ )
 		memarray[i] = malloc( 55 );
 	for ( i = 0; i < 10; i++ )
+		memarray[i] = realloc( memarray[i], 10 );
+	for ( i = 0; i < 10; i++ )
 		memarray[i] = realloc( memarray[i], 75 );
 	for ( i = 0; i < 10; i++ )
 		free( memarray[i] );
@@ -247,6 +249,5 @@ main( int argc, char **argv )
 			just_leak();
 		default:;
 	}
-	show_alloc_block();
 	return 0;
 }

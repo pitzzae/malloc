@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 21:45:23 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/01 18:53:58 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,31 @@ static void	*realloc_inc(void *ptr, t_block *b, size_t size)
 
 static void	*realloc_dec(void *ptr, t_block *b, size_t size)
 {
-	t_block	*next;
-	size_t 	old_size;
+	t_block	*nb;
+	t_page	*p;
 
-	if (b->next != NULL && b->next->is_free == 0)
+	p = first_page();
+	if (b->next != NULL && b->next->is_free == 0 && b->size > size + BLOCK_SIZE)
 	{
-		next = b->next->next;
-		b->next = b->next - (size - b->size);
-		b->next->next = next;
-		b->next->prev = b;
-		b->next->size = (b->size - size);
-		b->next->is_free = 1;
-		b->size = size;
+		nb = b;
+		nb += (BLOCK_SIZE + size);
+		nb->prev = b;
+		nb->next = b->next;
+		nb->size = b->size - (BLOCK_SIZE + size);
+		nb->is_free = 1;
+		b->next = nb;
 	}
 	else if (b->next != NULL && b->next->is_free == 1)
 	{
-		old_size = b->next->size;
-		next = b->next->next;
-		b->next = b->next - (size - b->size);
-		b->next->next = next;
-		b->next->prev = b;
-		b->next->size = old_size + (b->size - size);
-		b->next->is_free = 1;
-		b->size = size;
+		nb = b;
+		nb += (BLOCK_SIZE + size);
+		nb->prev = b;
+		nb->next = b->next->next;
+		nb->size = (b->size - (BLOCK_SIZE + size)) + BLOCK_SIZE + b->next->size;
+		nb->is_free = 1;
+		b->next = nb;
 	}
+	b->size = size;
 	return (ptr);
 }
 
