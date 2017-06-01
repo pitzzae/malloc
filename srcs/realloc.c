@@ -80,9 +80,7 @@ static void	*realloc_inc(void *ptr, t_block *b, size_t size)
 static void	*realloc_dec(void *ptr, t_block *b, size_t size)
 {
 	t_block	*nb;
-	t_page	*p;
 
-	p = first_page();
 	if (b->next != NULL && b->next->is_free == 0 && b->size > size + BLOCK_SIZE)
 	{
 		nb = b;
