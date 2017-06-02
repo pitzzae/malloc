@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/01 21:24:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:33:27 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct		s_page
 	struct s_block	*first;
 }					t_page;
 
-
 t_mtype				page_type(size_t size);
 size_t				page_length(size_t size);
 size_t				page_size(t_mtype size);
@@ -68,8 +67,8 @@ void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*calloc(size_t nmemb, size_t size);
 void				free(void *ptr);
-void                show_alloc_mem(void);
-void        		show_alloc_block(void);
+void				show_alloc_mem(void);
+void				show_alloc_block(void);
 void				check_last_block_size(t_page *p, t_block *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:08:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:35:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,12 @@ t_page		*block_parent_page(t_block *b)
 	if (b == NULL)
 		return (NULL);
 	iter = first_page();
-
 	while (iter != NULL)
 	{
 		if (iter->first != NULL)
 			remove_free_block(iter);
 		if ((void*)iter < (void*)b && (void*)iter + iter->size +
-									  BLOCK_SIZE > (void*)b)
+			BLOCK_SIZE > (void*)b)
 			return (iter);
 		iter = iter->next;
 	}

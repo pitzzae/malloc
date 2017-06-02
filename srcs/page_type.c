@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/31 21:27:42 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:39:14 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ t_mtype		page_type(size_t size)
 size_t		page_length(size_t size)
 {
 	if (size <= TINY_ALLOC)
-		return (size_t) (TINY_LENGTH);
+		return (size_t)(TINY_LENGTH);
 	if (size <= SMALL_ALLOC)
-		return (size_t) (SMALL_LENGTH);
+		return (size_t)(SMALL_LENGTH);
 	return (size + PAGE_SIZE + BLOCK_SIZE);
 }
 
 size_t		page_size(t_mtype size)
 {
 	if (size == TINY)
-		return (size_t) (TINY_LENGTH);
+		return (size_t)(TINY_LENGTH);
 	if (size == SMALL)
-		return (size_t) (SMALL_LENGTH);
+		return (size_t)(SMALL_LENGTH);
 	return (size + PAGE_SIZE);
 }

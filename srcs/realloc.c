@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/01 18:53:58 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:43:11 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static t_block	*search_ptr_in_page(t_page *page, void *ptr)
 {
-	t_block	*iter;
+	t_block		*iter;
 
 	iter = page->first;
 	while (iter != NULL)
@@ -34,8 +34,8 @@ static t_block	*search_ptr_in_page(t_page *page, void *ptr)
 
 static t_block	*search_ptr(void *ptr)
 {
-	t_page	*page;
-	t_block	*block;
+	t_page		*page;
+	t_block		*block;
 
 	page = first_page();
 	while (page != NULL)
@@ -48,11 +48,11 @@ static t_block	*search_ptr(void *ptr)
 	return (NULL);
 }
 
-static void	*realloc_inc(void *ptr, t_block *b, size_t size)
+static void		*realloc_inc(void *ptr, t_block *b, size_t size)
 {
-	t_block	*next;
-	size_t 	old_size;
-	void	*tmp;
+	t_block		*next;
+	size_t		old_size;
+	void		*tmp;
 
 	if (b->next != NULL && b->next->is_free == 1 &&
 			(b->next->size + b->size + BLOCK_SIZE) - size > 0)
@@ -77,9 +77,9 @@ static void	*realloc_inc(void *ptr, t_block *b, size_t size)
 	return (ptr);
 }
 
-static void	*realloc_dec(void *ptr, t_block *b, size_t size)
+static void		*realloc_dec(void *ptr, t_block *b, size_t size)
 {
-	t_block	*nb;
+	t_block		*nb;
 
 	if (b->next != NULL && b->next->is_free == 0 && b->size > size + BLOCK_SIZE)
 	{
@@ -105,9 +105,9 @@ static void	*realloc_dec(void *ptr, t_block *b, size_t size)
 	return (ptr);
 }
 
-void	*realloc(void *ptr, size_t size)
+void			*realloc(void *ptr, size_t size)
 {
-	t_block	*b;
+	t_block		*b;
 
 	b = search_ptr(ptr);
 	if (b != NULL && size > b->size)

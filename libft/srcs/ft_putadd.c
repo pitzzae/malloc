@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 00:05:25 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:34:40 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void			ft_putbase(unsigned long n, int base)
 	c = n < 10 ? '0' : 'a' - 10;
 	ft_putchar(c + n);
 }
-
 
 void			ft_putadd(void const *p)
 {

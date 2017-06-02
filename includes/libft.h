@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:08:25 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/01 21:24:27 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:32:47 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct		s_date
 	int				min;
 	int				hour;
 	int				mday;
-	int 			year;
+	int				year;
 	char			*sday;
 	char			*mon;
 }					t_date;

@@ -6,16 +6,16 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 11:34:04 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/05/30 22:10:07 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:41:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 #include "libft.h"
 
-static void show_block(t_block *b, int *len, size_t block_size)
+static void		show_block(t_block *b, int *len, size_t block_size)
 {
-	while(b != NULL)
+	while (b != NULL)
 	{
 		if (b->is_free == 0 || b->is_free == 1)
 		{
@@ -33,13 +33,13 @@ static void show_block(t_block *b, int *len, size_t block_size)
 	}
 }
 
-static void show_page(t_page *p, int *len, size_t block_size)
+static void		show_page(t_page *p, int *len, size_t block_size)
 {
 	ft_putstr(page_name(p->type));
 	ft_putstr(" : ");
 	ft_putadd(p);
 	ft_putstr("\n");
-    show_block(p->first, len, block_size);
+	show_block(p->first, len, block_size);
 	if (p->next != NULL)
 	{
 		p = p->next;
@@ -47,11 +47,10 @@ static void show_page(t_page *p, int *len, size_t block_size)
 	}
 }
 
-
-static void	show_alloc(size_t block_size)
+static void		show_alloc(size_t block_size)
 {
 	t_page	*p;
-	int 	len;
+	int		len;
 
 	len = 0;
 	p = first_page();
@@ -62,12 +61,12 @@ static void	show_alloc(size_t block_size)
 	ft_putendl(" octets");
 }
 
-void        show_alloc_mem(void)
+void			show_alloc_mem(void)
 {
 	show_alloc(0);
 }
 
-void        show_alloc_block(void)
+void			show_alloc_block(void)
 {
 	show_alloc(BLOCK_SIZE);
 }
