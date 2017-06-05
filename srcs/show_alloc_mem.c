@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 11:34:04 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/05 23:53:10 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 01:02:20 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ void		    show_alloc(size_t debug)
 
 void			show_alloc_mem(void)
 {
-	show_alloc(0);
+    pthread_mutex_lock(get_mutex());
+    show_alloc(0);
+    pthread_mutex_unlock(get_mutex());
 }

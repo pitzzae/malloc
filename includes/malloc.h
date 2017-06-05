@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/05 23:52:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 01:01:34 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
-# define MALLOC_DEBUG   1
+# define MALLOC_DEBUG   0
 
 # define BLOCK_SIZE		(sizeof(t_block))
 # define BDATA(b)		((void*)((char*)b + sizeof(t_block)) + 1)
@@ -31,6 +31,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+# include <pthread.h>
 
 typedef enum		e_mtype
 {
@@ -75,6 +76,7 @@ void				show_alloc_mem(void);
 void				show_alloc_block(void);
 void				check_last_block_size(t_page *p, t_block *b);
 void                malloc_dump(char *msg, void *ptr, size_t len);
+pthread_mutex_t		*get_mutex(void);
 void		        show_alloc(size_t block_size);
 void				ft_putadd(void const *p);
 void				ft_putstr(char *str);

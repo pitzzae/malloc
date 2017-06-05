@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/05 19:57:07 by gtorresa          #+#    #+#              #
-#*   Updated: 2017/06/05 20:15:08 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/06/06 01:02:58 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -26,7 +26,7 @@ OBJECTS		= $(patsubst %.c, $(BIN_DIR)/%, $(SRCS))
 all: ${NAME}
 
 $(NAME): $(OBJECTS)
-	$(CC) -o $(BIN_DIR)/test5 $(SRCS_DIR)/test5.c -L. -lft_malloc
+	$(CC) -o $(BIN_DIR)/test5 $(SRCS_DIR)/test5.c -L.. -lft_malloc
 	@echo "Build"
 
 $(BIN_DIR)/%: $(addprefix $(SRCS_DIR)/,%.c)
