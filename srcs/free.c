@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:22:15 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/05 19:40:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 23:52:41 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void			free(void *ptr)
 	b = search_ptr(ptr);
 	if (b)
 		b->is_free = 1;
+    if (b && MALLOC_DEBUG)
+        malloc_dump("free", BDATA(b), b->size);
 	//check_page(b);
 }
