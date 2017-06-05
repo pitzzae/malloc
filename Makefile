@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/02 10:25:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2017/06/05 20:18:57 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/06/05 20:21:29 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -47,6 +47,7 @@ $(OBJS_DIR)/%.o: $(addprefix $(SRCS_DIR)/,%.c)
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f libft_malloc.so
 	@echo "Delete objs"
 
 clean:
