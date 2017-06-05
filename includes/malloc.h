@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/05 19:46:16 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 22:10:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define TINY_LENGTH	(4 * getpagesize())
 # define TINY_ALLOC		128
 
-# define SMALL_LENGTH	(16 * getpagesize())
-# define SMALL_ALLOC	4096
+# define SMALL_LENGTH	(64 * getpagesize())
+# define SMALL_ALLOC	2048
 
 # include <stdlib.h>
 # include <sys/mman.h>
