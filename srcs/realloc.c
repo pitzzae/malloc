@@ -6,12 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/02 16:43:11 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 19:42:23 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
-#include "libft.h"
 
 static t_block	*search_ptr_in_page(t_page *page, void *ptr)
 {
@@ -114,5 +113,6 @@ void			*realloc(void *ptr, size_t size)
 		return (realloc_inc(ptr, b, size));
 	else if (b != NULL && size < b->size)
 		return (realloc_dec(ptr, b, size));
+    ptr = malloc(size);
 	return (ptr);
 }

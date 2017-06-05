@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calloc.c                                           :+:      :+:    :+:   */
+/*   ft_putadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/01 20:02:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/05 19:41:29 by gtorresa         ###   ########.fr       */
+/*   Created: 2017/06/29 15:11:42 by gtorresa          #+#    #+#             */
+/*   Updated: 2017/06/02 23:58:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-/*void		*calloc(size_t nmemb, size_t size)
+void			ft_putbase(unsigned long n, int base)
 {
-	void	*ptr;
+	char		c;
 
-    ft_putstr("nmemb: ");
-    ft_putnbr(nmemb);
-    ft_putstr(" size: ");
-    ft_putnbr(size);
-	ft_putendl(" calloc\n");
-    if (nmemb == 0 || size == 0)
-		return (NULL);
-	ptr = malloc(size * nmemb + sizeof(ptr) * nmemb);
-	ft_bzero(ptr, size * nmemb + sizeof(ptr) * nmemb);
-	return (ptr);
+	if (n / base > 0)
+	{
+		ft_putbase((n / base), base);
+		n = n % base;
+	}
+	c = n < 10 ? '0' : 'a' - 10;
+	ft_putchar(c + n);
 }
-*/
+
+void			ft_putadd(void const *p)
+{
+	ft_putstr("0x");
+	ft_putbase((unsigned long)p, 16);
+}

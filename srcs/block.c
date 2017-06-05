@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/02 16:35:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 19:32:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,17 @@ void		init_page(void *ptr, t_mtype size, size_t block_size)
 
 void		check_last_block_size(t_page *p, t_block *b)
 {
-	if (b != NULL && b->next == NULL && p != NULL)
-		b->size = (((long int)p + (long int)p->size - (long int)BDATA(b)) /
-				sizeof(char)) - PAGE_SIZE;
+    char        *l;
+    char        *m;
+    char        *res;
+    int         res2;
+
+    l = (char*)p;
+    m = (char*)b->next;
+    res = l + p->size;
+    res2 = res - m;
+    if (b != NULL && b->next == NULL && p != NULL)
+		b->size = (((long int)p + (long int)p->size - (long int)BDATA(b)) /sizeof(char)) - PAGE_SIZE;
 }
 
 static void	remove_free_block(t_page *p)

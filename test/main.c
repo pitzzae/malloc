@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/01 21:24:42 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/02 21:43:49 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "malloc.h"
+#include <stdlib.h>
 #include "libft.h"
 #include <stdio.h>
 
@@ -23,7 +23,7 @@ void	test_calloc(void)
 	j = 10;
 	ptr = calloc(j, sizeof(char));
 	ptr[0] = 'a';
-	show_alloc_block();
+	//show_alloc_block();
 	while (i < j)
 	{
 		ptr[i] = 'a' + i;

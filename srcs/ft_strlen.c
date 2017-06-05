@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calloc.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/01 20:02:00 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/05 19:41:29 by gtorresa         ###   ########.fr       */
+/*   Created: 2015/11/23 11:12:55 by gtorresa          #+#    #+#             */
+/*   Updated: 2015/12/03 16:45:41 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "malloc.h"
+#include <string.h>
 
-/*void		*calloc(size_t nmemb, size_t size)
+size_t	ft_strlen(const char *str)
 {
-	void	*ptr;
+	int	i;
 
-    ft_putstr("nmemb: ");
-    ft_putnbr(nmemb);
-    ft_putstr(" size: ");
-    ft_putnbr(size);
-	ft_putendl(" calloc\n");
-    if (nmemb == 0 || size == 0)
-		return (NULL);
-	ptr = malloc(size * nmemb + sizeof(ptr) * nmemb);
-	ft_bzero(ptr, size * nmemb + sizeof(ptr) * nmemb);
-	return (ptr);
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
 }
-*/

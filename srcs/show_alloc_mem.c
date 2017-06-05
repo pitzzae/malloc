@@ -6,12 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 11:34:04 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/02 16:41:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 19:43:29 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
-#include "libft.h"
 
 static void		show_block(t_block *b, int *len, size_t block_size)
 {
@@ -22,6 +21,8 @@ static void		show_block(t_block *b, int *len, size_t block_size)
 			ft_putadd(BDATA(b) - block_size);
 			ft_putstr(" - ");
 			ft_putadd(BDATA(b) + b->size - block_size);
+            ft_putstr(" - ");
+            ft_putadd(BDATA(b) + b->size + BLOCK_SIZE - block_size);
 			ft_putstr(" : ");
 			ft_putnbr(b->size);
 			if (b->is_free == 1)

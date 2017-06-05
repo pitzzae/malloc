@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/02 16:44:57 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 19:39:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void		split_block(t_block *b, size_t mem_width)
 	t_block		*nb;
 	t_block		**btmp;
 
-	if (b->size == mem_width + BLOCK_SIZE)
+	if (b->size == mem_width)
 		return ;
 	if ((int)(b->size - mem_width - BLOCK_SIZE * 2) > 0)
 	{
-		nb = BDATA(b) + mem_width + BLOCK_SIZE;
+		nb = BDATA(b) + mem_width + BLOCK_SIZE - 1;
 		btmp = &b->next;
-		nb->size = b->size - (int)mem_width - (int)BLOCK_SIZE;
+		nb->size = b->size - (size_t)mem_width - (size_t)BLOCK_SIZE * 2;
 		if (btmp[0] == NULL || btmp[0]->is_free == 0)
 			nb->next = btmp[0];
 		else
@@ -33,6 +33,8 @@ static void		split_block(t_block *b, size_t mem_width)
 		nb->prev = b;
 		nb->is_free = 1;
 	}
+	if (mem_width < b->size)
+		b->size = mem_width;
 }
 
 t_block			*search_freed_block_in_page(t_page *p, size_t size)
@@ -85,7 +87,9 @@ void			*malloc_b(size_t size)
 void			*malloc(size_t size)
 {
 	t_block		*b;
+	t_page      *p;
 
+	p = first_page();
 	b = malloc_b(size);
 	return (BDATA(b));
 }

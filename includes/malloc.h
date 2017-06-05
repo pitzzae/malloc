@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/02 16:33:27 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 19:46:16 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 # define MALLOC_H
 
 # define BLOCK_SIZE		(sizeof(t_block))
-# define BDATA(b)		((void*)((char*)b + sizeof(t_block)))
+# define BDATA(b)		((void*)((char*)b + sizeof(t_block)) + 1)
 
 # define PAGE_SIZE		(sizeof(t_page))
-# define PDATA(p)		((void*)((char*)p + sizeof(t_page)))
+# define PDATA(p)		((void*)((char*)p + sizeof(t_page)) + 1)
 
-# define TINY_LENGTH	(2 * getpagesize())
+# define TINY_LENGTH	(4 * getpagesize())
 # define TINY_ALLOC		128
 
 # define SMALL_LENGTH	(16 * getpagesize())
 # define SMALL_ALLOC	4096
 
+# include <stdlib.h>
 # include <sys/mman.h>
+# include <stdio.h>
 # include <unistd.h>
+# include <string.h>
 
 typedef enum		e_mtype
 {
@@ -65,10 +68,19 @@ t_page				*block_parent_page(t_block *b);
 void				del_page(t_page *page);
 void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
-void				*calloc(size_t nmemb, size_t size);
+//void				*calloc(size_t nmemb, size_t size);
 void				free(void *ptr);
 void				show_alloc_mem(void);
 void				show_alloc_block(void);
 void				check_last_block_size(t_page *p, t_block *b);
+void				ft_putadd(void const *p);
+void				ft_putstr(char *str);
+void				ft_putendl(char *str);
+void				ft_putchar(char c);
+void				ft_putnbr(long int n);
+size_t				ft_strlen(char const *str);
+int					ft_isdigit(int c1);
+void				ft_bzero(void *b, size_t len);
+void				*ft_memcpy(void *dst, const void *src, size_t len);
 
 #endif
