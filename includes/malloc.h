@@ -12,7 +12,7 @@
 
 #ifndef MALLOC_H
 # define MALLOC_H
-# define MALLOC_DEBUG   0
+# define MALLOC_DEBUG   1
 
 # define BLOCK_SIZE		(sizeof(t_block))
 # define BDATA(b)		((void*)((char*)b + sizeof(t_block)) + 1)

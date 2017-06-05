@@ -18,7 +18,7 @@ CC 			= gcc
 NAME		= libft_malloc_$(HOSTTYPE).so
 
 CFLAGS		= -Wall -Wextra -Werror
-DLFLAGS		= -shared -fPIC -DDEBUG
+DLFLAGS		= -shared -fPIC
 
 SRCS_DIR	= srcs
 OBJS_DIR	= objs
