@@ -64,6 +64,6 @@ void			free(void *ptr)
 		b->is_free = 1;
     if (b && MALLOC_DEBUG)
         malloc_dump("free", BDATA(b), b->size);
+	//check_page(b);
     pthread_mutex_unlock(get_mutex());
-	check_page(b);
 }

@@ -65,7 +65,7 @@ static void	remove_free_block(t_page *p)
 			b->next = b->next->next;
 		}
 		if (b->next == NULL)
-			check_last_block_size(p, b);
+			//check_last_block_size(p, b);
 		b = b->next;
 	}
 }
