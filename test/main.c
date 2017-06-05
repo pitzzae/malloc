@@ -6,13 +6,48 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:53:16 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/02 21:43:49 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/05 20:40:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
 #include <stdio.h>
+#include <string.h>
+
+char *ft_strjoin(const char *s1, const char *s2)
+{
+		char*str;
+
+	str = malloc(strlen(s1) + strlen(s2) + 1);
+	if (	str == NULL)
+		return (NULL);
+	strcpy(str, s1);
+	strcat(str, s2);
+	return (str);
+}
+
+
+char *ft_strjoin_free(char *s1, char *s2, int fre)
+{
+	char*str;
+
+		str = malloc(strlen(s1) + strlen(s2) + 1);
+		if (str == NULL)
+			return (NULL);
+		strcpy(str, s1);
+		strcat(str, s2);
+		str[strlen(s1) + strlen(s2)] = '\0';
+		if (fre == 1)
+			free(s1);
+		if (fre == 2)
+			free(s2);
+		if (fre == 3)
+		{
+			free(s1);
+			free(s2);
+		}
+	return (str);
+}
 
 void	test_calloc(void)
 {
@@ -32,10 +67,10 @@ void	test_calloc(void)
 	i = 0;
 	while (i < j)
 	{
-		ft_putchar(ptr[i]);
+		printf("%c",ptr[i]);
 		i++;
 	}
-	ft_putchar('\n');
+	printf("\n");
 	free(ptr);
 }
 
@@ -77,7 +112,7 @@ free_then_use( void )
 	p = malloc( 30 );
 	free( p );
 	//show_alloc_mem();
-	ft_strcpy( p, "Hello There!" );
+	strcpy( p, "Hello There!" );
 	p = malloc( 30 );
 	free( p );
 }
@@ -93,8 +128,8 @@ void
 free_midrange( void )
 {
 	char *p = malloc( 30 );
-	ft_strcpy( p, "This is a Test");
-	p = (void *)ft_strchr( p, 's' );
+	strcpy( p, "This is a Test");
+	p = (void *)strchr( p, 's' );
 	free( p );
 }
 
@@ -113,10 +148,10 @@ just_leak( void )
 	char *memarray[10];
 	int i;
 	for ( i = 0; i < 10; i++ )
-		memarray[i] = (void *)ft_strdup( "string" );
+		memarray[i] = (void *)strdup( "string" );
 
 	for ( i = 0; i < 10; i++ )
-		memarray[i] = (void *)ft_strdup( "string" );
+		memarray[i] = (void *)strdup( "string" );
 
 	for ( i = 0; i < 10; i++ )
 		memarray[i] = malloc( 45 );
@@ -142,25 +177,25 @@ malloc_free_cycle( void )
 	int i;
 
 	for ( i = 0; i < 10; i++ )
-		memarray[i] = ft_strdup( "string" );
+		memarray[i] = strdup( "string" );
 	for ( i = 0; i < 10; i++ )
 		free( memarray[i] );
 
 	for ( i = 0; i < 10; i++ )
-		memarray[i] = ft_strdup( "string" );
+		memarray[i] = strdup( "string" );
 	for ( i = 0; i < 10; i++ )
 		free( memarray[i] );
 
 	for ( i = 0; i < 10; i++ )
 	{
-		memarray[i] = ft_strdup( "stringstringstringstring");
+		memarray[i] = strdup( "stringstringstringstring");
 	}
 	for ( i = 0; i < 10; i++ )
 		free( memarray[i] );
 
 	for ( i = 0; i < 10; i++ )
 	{
-		memarray[i] = ft_strdup( "stringstringstringstring");
+		memarray[i] = strdup( "stringstringstringstring");
 	}
 	for ( i = 0; i < 10; i++ )
 		free( memarray[i] );
@@ -182,25 +217,22 @@ void	test_malloc(char *string1, char *string2, int fre)
 	lenght = 0;
 	string2 = "12345";
 	string1 = ft_strjoin(string2, " 67890");
-	string2 = ft_strdup(string1);
-	ft_putendl(string2);
+	string2 = strdup(string1);
 	string2 = realloc(string2, 50);
 	while (lenght < 500)
 	{
 		//show_alloc_mem();
 		string2 = ft_strjoin_free(string2, string1, 1);
-		ft_putendl(string2);
 		lenght++;
+		printf("%d/500\n", lenght);
 		//show_alloc_mem();
 		malloc_free_cycle();
 	}
-	ft_putendl("");
 	if (fre == 1)
 	{
 		free(string1);
 		free(string2);
 	}
-	ft_putendl("all free");
 }
 
 void
@@ -210,7 +242,7 @@ underrun()
 #ifdef MALLOC_DEBUG
 	mallopt(MALLOC_FILLAREA, 1);
 #endif
-	p = (char *)(void *)ft_strdup( "hello" );
+	p = (char *)(void *)strdup( "hello" );
 	p -= 4;
 	*p = 88;
 	p += 4;
@@ -233,7 +265,7 @@ main( int argc, char **argv )
 		dohelp();
 		return 0;
 	}
-	switch( ft_atoi( argv[1] ) ) {
+	switch( atoi( argv[1] ) ) {
 		case 1:
 			duplicate_free();
 			break;
