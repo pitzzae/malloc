@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 01:02:12 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 03:01:01 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void		*realloc_inc(void *ptr, t_block *b, size_t size)
 	else
 	{
 		tmp = ptr;
-        pthread_mutex_unlock(get_mutex());
+        pthread_mutex_unlock(get_mmutex());
 		ptr = malloc(size);
 		ft_bzero(ptr, size);
 		ft_memcpy(ptr, tmp, b->size - 1);
@@ -111,7 +111,7 @@ void			*realloc(void *ptr, size_t size)
 {
 	t_block		*b;
 
-    pthread_mutex_lock(get_mutex());
+    pthread_mutex_lock(get_mmutex());
 	b = search_ptr(ptr);
 	if (b != NULL && size > b->size)
 		return (realloc_inc(ptr, b, size));
@@ -119,7 +119,7 @@ void			*realloc(void *ptr, size_t size)
 		return (realloc_dec(ptr, b, size));
 	if (b == NULL && ptr != NULL)
 		return (NULL);
-    pthread_mutex_unlock(get_mutex());
+    pthread_mutex_unlock(get_mmutex());
 	ptr = malloc(size);
     if (MALLOC_DEBUG)
         malloc_dump("realloc", BDATA(ptr), size);

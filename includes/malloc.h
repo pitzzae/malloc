@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 01:01:34 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 02:59:30 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void				show_alloc_mem(void);
 void				show_alloc_block(void);
 void				check_last_block_size(t_page *p, t_block *b);
 void                malloc_dump(char *msg, void *ptr, size_t len);
-pthread_mutex_t		*get_mutex(void);
+pthread_mutex_t		*get_mmutex(void);
 void		        show_alloc(size_t block_size);
 void				ft_putadd(void const *p);
 void				ft_putstr(char *str);
