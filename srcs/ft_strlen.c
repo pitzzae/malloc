@@ -6,11 +6,11 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:12:55 by gtorresa          #+#    #+#             */
-/*   Updated: 2015/12/03 16:45:41 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:40:35 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "malloc.h"
 
 size_t	ft_strlen(const char *str)
 {

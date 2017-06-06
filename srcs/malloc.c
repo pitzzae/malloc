@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 17:42:55 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:40:47 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		split_block(t_block *b, size_t mem_width)
 		b->size = mem_width;
 }
 
-t_block			*search_freed_block_in_page(t_page *p, size_t size)
+static t_block	*search_freed_block_in_page(t_page *p, size_t size)
 {
 	t_block		*b;
 
@@ -47,7 +47,7 @@ t_block			*search_freed_block_in_page(t_page *p, size_t size)
 	return (b);
 }
 
-t_block			*search_freed_block(size_t size)
+static t_block	*search_freed_block(size_t size)
 {
 	t_page		*p;
 	t_block		*b;
@@ -72,7 +72,7 @@ t_block			*search_freed_block(size_t size)
 	return (b);
 }
 
-void			*malloc_b(size_t size)
+static void		*malloc_b(size_t size)
 {
 	t_block		*b;
 
@@ -91,7 +91,7 @@ void			*malloc(size_t size)
     pthread_mutex_trylock(get_mmutex());
 	b = malloc_b(size);
     if (MALLOC_DEBUG)
-        malloc_dump("malloc", BDATA(b), size);
+        malloc_dump("\e[91mmalloc\e[0m", BDATA(b), size);
     pthread_mutex_unlock(get_mmutex());
 	return (BDATA(b));
 }

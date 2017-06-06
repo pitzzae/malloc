@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 17:43:01 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:40:55 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void		*realloc_dec(void *ptr, t_block *b, size_t size)
 	}
 	b->size = size;
     if (MALLOC_DEBUG)
-        malloc_dump("realloc dec", BDATA(ptr), size);
+        malloc_dump("\e[92mrealloc dec\e[0m", BDATA(ptr), size);
 	return (ptr);
 }
 
@@ -111,10 +111,14 @@ void			*realloc(void *ptr, size_t size)
 {
 	t_block		*b;
 
-    pthread_mutex_lock(get_mmutex());
+    pthread_mutex_trylock(get_mmutex());
 	b = search_ptr(ptr);
 	if (b != NULL && size > b->size)
-		return (realloc_inc(ptr, b, size));
+    {
+        if (MALLOC_DEBUG)
+            malloc_dump(" \e[92mrealloc inc\e[0m", ptr, size);
+        return (realloc_inc(ptr, b, size));
+    }
 	else if (b != NULL && size < b->size)
 		return (realloc_dec(ptr, b, size));
 	if (b == NULL && ptr != NULL)
@@ -125,6 +129,6 @@ void			*realloc(void *ptr, size_t size)
 	ptr = malloc(size + 1);
     ft_bzero(ptr, size + 1);
     if (MALLOC_DEBUG)
-        malloc_dump(" realloc NB", ptr, size);
+        malloc_dump(" \e[92mrealloc NB\e[0m", ptr, size);
 	return (ptr);
 }

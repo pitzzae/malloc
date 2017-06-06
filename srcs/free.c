@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:22:15 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 17:42:43 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:40:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			free(void *ptr)
 	if (b)
 		b->is_free = 1;
     if (b && MALLOC_DEBUG)
-        malloc_dump("free", BDATA(b), b->size);
-	//check_page(b);
+        malloc_dump("\e[34mfree\e[0m", BDATA(b), b->size);
+	check_page(b);
     pthread_mutex_unlock(get_mmutex());
 }
