@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 02:59:30 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 15:50:24 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
-# define MALLOC_DEBUG   1
+# define MALLOC_DEBUG   0
 
 # define BLOCK_SIZE		(sizeof(t_block))
 # define BDATA(b)		((void*)((char*)b + sizeof(t_block)) + 1)
@@ -70,10 +70,8 @@ t_page				*block_parent_page(t_block *b);
 void				del_page(t_page *page);
 void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
-//void				*calloc(size_t nmemb, size_t size);
 void				free(void *ptr);
 void				show_alloc_mem(void);
-void				show_alloc_block(void);
 void				check_last_block_size(t_page *p, t_block *b);
 void                malloc_dump(char *msg, void *ptr, size_t len);
 pthread_mutex_t		*get_mmutex(void);
@@ -87,5 +85,7 @@ size_t				ft_strlen(char const *str);
 int					ft_isdigit(int c1);
 void				ft_bzero(void *b, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t len);
+void                print_hex(const char *s, const size_t len);
+void                print_hex_string(const char *s, const size_t len);
 
 #endif

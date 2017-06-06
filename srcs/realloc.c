@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 03:01:01 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 15:51:05 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void		*realloc_dec(void *ptr, t_block *b, size_t size)
 	}
 	b->size = size;
     if (MALLOC_DEBUG)
-        malloc_dump("realloc", BDATA(ptr), size);
+        malloc_dump("realloc dec", BDATA(ptr), size);
 	return (ptr);
 }
 
@@ -122,6 +122,6 @@ void			*realloc(void *ptr, size_t size)
     pthread_mutex_unlock(get_mmutex());
 	ptr = malloc(size);
     if (MALLOC_DEBUG)
-        malloc_dump("realloc", BDATA(ptr), size);
+        malloc_dump("realloc NB", ptr, size);
 	return (ptr);
 }
