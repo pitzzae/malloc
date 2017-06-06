@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 19:21:21 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 21:06:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void				ft_putchar(char c);
 void				ft_putnbr(long int n);
 size_t				ft_strlen(char const *str);
 int					ft_isdigit(int c1);
+void	            *ft_strcat_chr(char *dst, const char c);
 void				ft_bzero(void *b, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t len);
 void                print_hex(const char *s, const size_t len);

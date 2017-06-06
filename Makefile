@@ -6,7 +6,7 @@
 #    By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/02 10:25:23 by gtorresa          #+#    #+#              #
-#*   Updated: 2017/06/06 15:50:02 by gtorresa         ###   ########.fr       *#
+#*   Updated: 2017/06/06 21:06:02 by gtorresa         ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,7 @@ OBJS_DIR	= objs
 INCL_DIR	= includes
 
 SRCS		= malloc.c page.c page_type.c block.c block_alloc.c free.c \
-			show_alloc_mem.c realloc.c ft_bzero.c ft_memcpy.c \
+			show_alloc_mem.c realloc.c ft_bzero.c ft_memcpy.c ft_strcat_chr.c \
 			ft_putadd.c ft_putendl.c ft_putstr.c ft_atoi.c ft_putnbr.c \
 			ft_putchar.c ft_strlen.c ft_isdigit.c malloc_dump.c pthread.c
 

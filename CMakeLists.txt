@@ -9,5 +9,5 @@ set(SOURCE_FILES srcs/block.c srcs/block_alloc.c srcs/free.c srcs/malloc.c
         srcs/malloc_dump.c srcs/ft_atoi.c srcs/ft_bzero.c
         srcs/ft_isdigit.c srcs/ft_memcpy.c srcs/ft_putadd.c srcs/ft_putchar.c
         srcs/ft_putendl.c srcs/ft_putnbr.c srcs/ft_putstr.c srcs/ft_strlen.c
-        srcs/pthread.c)
+        srcs/pthread.c srcs/ft_strcat_chr.c)
 add_library(ft_malloc SHARED ${SOURCE_FILES} ${HEADER_FILES})
