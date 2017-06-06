@@ -21,6 +21,7 @@ static void     ft_print_output(t_block *b, size_t debug)
         ft_putadd(BDATA(b) + b->size);
         ft_putstr(" : ");
         ft_putnbr(b->size);
+        ft_putendl(" octets");
     }
     if (b->is_free == 1 && debug)
     {
@@ -29,9 +30,8 @@ static void     ft_print_output(t_block *b, size_t debug)
         ft_putadd(BDATA(b) + b->size);
         ft_putstr(" : ");
         ft_putnbr(b->size);
-        ft_putstr(" free");
+        ft_putendl(" free octets");
     }
-    ft_putendl(" octets");
 }
 
 static void		show_block(t_block *b, int *len, size_t debug)
