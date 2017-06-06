@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:55:36 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 19:23:42 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:51:39 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void        malloc_free_cycle(void)
         free( memarray[i] );
 
     for ( i = 0; i < 10; i++ )
-        memarray[i] = malloc( 55 );
+        memarray[i] =  strdup( "string1string1string2string4string5string6");
     for ( i = 0; i < 10; i++ )
         memarray[i] = realloc( memarray[i], 10 );
     for ( i = 0; i < 10; i++ )

@@ -43,12 +43,12 @@ static void		show_block(t_block *b, int *len, size_t debug)
 			ft_print_output(b, debug);
 			if (debug != 0 && b->next)
 			{
-				if (MALLOC_DEBUG == 2 || MALLOC_DEBUG == 4)
+				if (MALLOC_DEBUG == 2 || MALLOC_DEBUG >= 4)
 				{
 					ft_putstr("Dump_hexa:\t");
 					print_hex((char*)BDATA(b), b->size);
 				}
-				if (MALLOC_DEBUG == 3 || MALLOC_DEBUG == 4)
+				if (MALLOC_DEBUG == 3 || MALLOC_DEBUG >= 4)
 				{
 					ft_putstr("Dump_str:\t");
 					print_hex_string((char*)BDATA(b), b->size);

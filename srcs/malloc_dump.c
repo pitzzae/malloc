@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 23:11:01 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 23:14:41 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:51:09 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void		show_block(t_block *b, size_t debug)
 		ft_print_output(b);
 		if (debug != 0 && b->next)
 		{
-			if (MALLOC_DEBUG == 2 || MALLOC_DEBUG == 4)
+			if (MALLOC_DEBUG == 2 || MALLOC_DEBUG >= 4)
 			{
 				ft_putstr("Dump_hexa:\t");
 				print_hex((char*)BDATA(b), b->size);
 			}
-			if (MALLOC_DEBUG == 3 || MALLOC_DEBUG == 4)
+			if (MALLOC_DEBUG == 3 || MALLOC_DEBUG >= 4)
 			{
 				ft_putstr("Dump_str:\t");
 				print_hex_string((char*)BDATA(b), b->size);
@@ -60,7 +60,17 @@ void    inspect_alloc(void *ptr)
 	t_block     *b;
 
 	b = ptr - (BLOCK_SIZE + 1);
+	ft_putendl("------------------------BLOCK_INSPECT"
+		"--------------------------");
 	show_block(b, 1);
+	if (b->size > SMALL_ALLOC)
+		ft_putendl("Couldn't display large block !!!");
+	if (MALLOC_DEBUG == 5)
+	{
+		ft_putendl("-----------------------------------------------------------"
+			"----");
+		show_alloc(1);
+	}
 }
 
 void    malloc_dump(char *msg, void *ptr, size_t len)
