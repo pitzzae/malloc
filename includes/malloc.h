@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 17:42:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 19:21:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
-# define MALLOC_DEBUG   4
+# define MALLOC_DEBUG   0
 
 
 # define BLOCK_SIZE		(sizeof(t_block))

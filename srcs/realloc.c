@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 18:40:55 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 19:21:28 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		*realloc_inc(void *ptr, t_block *b, size_t size)
 	void		*tmp;
 
 	if (b->next != NULL && b->next->is_free == 1 &&
-			(b->next->size + b->size + BLOCK_SIZE) - size > 0)
+            (b->next->size + b->size + BLOCK_SIZE) > size)
 	{
 		old_size = b->next->size;
 		next = b->next->next;
