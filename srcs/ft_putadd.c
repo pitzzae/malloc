@@ -45,10 +45,19 @@ void            print_hex(const char *s, const size_t len)
     while(i < len)
     {
         if (((unsigned long)s[i] & 0x00F0) == 0)
+        {
             buf[j++] = '0';
-        ft_putbase((unsigned long)s[i++] & 0x00FF, &buf[j++], 16);
-        if (((unsigned long)s[i] & 0x00F0) != 0)
+            ft_putbase((unsigned long)s[i++] & 0x00FF, &buf[j++], 16);
+        }
+        else
+        {
+            ft_putbase((unsigned long)s[i++] & 0x00FF, &buf[j++], 16);
             j++;
+        }
+
+
+
+
         if (i % 16 == 0 && i < len)
         {
             ft_putstr(buf);
