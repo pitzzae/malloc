@@ -6,15 +6,15 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:12:55 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 18:40:35 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 22:14:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-size_t	ft_strlen(const char *str)
+size_t      ft_strlen(const char *str)
 {
-	int	i;
+    size_t	i;
 
 	i = 0;
 	while (str[i])

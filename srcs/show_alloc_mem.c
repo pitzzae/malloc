@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 11:34:04 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 21:06:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 22:15:21 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,17 @@ static void		show_block(t_block *b, int *len, size_t debug)
 		if (b->is_free == 0 || b->is_free == 1)
 		{
             ft_print_output(b, debug);
-			if (debug && b)
+			if (debug != 0 && b->next)
             {
-                if (b->next)
+                if (MALLOC_DEBUG == 2 || MALLOC_DEBUG == 4)
                 {
-                    if (MALLOC_DEBUG == 2 || MALLOC_DEBUG == 4)
-                    {
-                        ft_putstr("Dump_hexa:\t");
-                        print_hex((char*)BDATA(b), b->size);
-                    }
-                    if (MALLOC_DEBUG == 3 || MALLOC_DEBUG == 4)
-                    {
-                        ft_putstr("Dump_str:\t");
-                        print_hex_string((char*)BDATA(b), b->size);
-                    }
+                    ft_putstr("Dump_hexa:\t");
+                    print_hex((char*)BDATA(b), b->size);
+                }
+                if (MALLOC_DEBUG == 3 || MALLOC_DEBUG == 4)
+                {
+                    ft_putstr("Dump_str:\t");
+                    print_hex_string((char*)BDATA(b), b->size);
                 }
             }
 			len[0] += b->size;

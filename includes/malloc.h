@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 21:06:09 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 22:14:37 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
-# define MALLOC_DEBUG   0
+# define MALLOC_DEBUG   4
 
 
 # define BLOCK_SIZE		(sizeof(t_block))
@@ -82,7 +82,7 @@ void				ft_putstr(char *str);
 void				ft_putendl(char *str);
 void				ft_putchar(char c);
 void				ft_putnbr(long int n);
-size_t				ft_strlen(char const *str);
+size_t              ft_strlen(char const *str);
 int					ft_isdigit(int c1);
 void	            *ft_strcat_chr(char *dst, const char c);
 void				ft_bzero(void *b, size_t len);
