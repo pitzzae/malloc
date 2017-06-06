@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 22:14:37 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:23:56 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,20 @@ void				*realloc(void *ptr, size_t size);
 void				free(void *ptr);
 void				show_alloc_mem(void);
 void				check_last_block_size(t_page *p, t_block *b);
-void                malloc_dump(char *msg, void *ptr, size_t len);
+void				malloc_dump(char *msg, void *ptr, size_t len);
 pthread_mutex_t		*get_mmutex(void);
-void		        show_alloc(size_t block_size);
+void				show_alloc(size_t block_size);
 void				ft_putadd(void const *p);
 void				ft_putstr(char *str);
 void				ft_putendl(char *str);
 void				ft_putchar(char c);
 void				ft_putnbr(long int n);
-size_t              ft_strlen(char const *str);
+size_t				ft_strlen(char const *str);
 int					ft_isdigit(int c1);
-void	            *ft_strcat_chr(char *dst, const char c);
+void				*ft_strcat_chr(char *dst, const char c);
 void				ft_bzero(void *b, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t len);
-void                print_hex(const char *s, const size_t len);
-void                print_hex_string(const char *s, const size_t len);
+void				print_hex(const char *s, const size_t len);
+void				print_hex_string(const char *s, const size_t len);
 
 #endif
