@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 15:06:12 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 21:07:22 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:19:27 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_strcat_chr(char *dst, const char c)
 	j = 0;
 	while (dst[j] != '\0')
 		j++;
-    dst[j++] = c;
-    dst[j] = '\0';
+	dst[j++] = c;
+	dst[j] = '\0';
 	return (dst);
 }

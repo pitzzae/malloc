@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 18:40:47 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:18:47 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void			*malloc(size_t size)
 {
 	t_block		*b;
 
-    pthread_mutex_trylock(get_mmutex());
+	pthread_mutex_trylock(get_mmutex());
 	b = malloc_b(size);
-    if (MALLOC_DEBUG)
-        malloc_dump("\e[91mmalloc\e[0m", BDATA(b), size);
-    pthread_mutex_unlock(get_mmutex());
+	if (MALLOC_DEBUG)
+		malloc_dump("\e[91mmalloc\e[0m", BDATA(b), size);
+	pthread_mutex_unlock(get_mmutex());
 	return (BDATA(b));
 }
