@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 16:14:24 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 17:42:48 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void            print_hex(const char *s, const size_t len)
             ft_putchar('0');
         ft_putbase((unsigned long)s[i++] & 0x00FF, 16);
         if (i % 16 == 0 && i < len)
-            ft_putstr("\n\t\t\t");
+            ft_putstr("\n\t\t");
         else
             ft_putstr(" ");
     }
@@ -63,7 +63,7 @@ void            print_hex_string(const char *s, const size_t len)
             ft_putchar('.');
         i++;
         if (i % 16 == 0 && i < len)
-            ft_putstr("\n\t\t\t");
+            ft_putstr("\n\t\t");
         else
             ft_putstr("  ");
     }
