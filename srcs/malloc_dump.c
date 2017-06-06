@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 23:11:01 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 23:51:09 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:59:06 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ void    inspect_alloc(void *ptr)
 	show_block(b, 1);
 	if (b->size > SMALL_ALLOC)
 		ft_putendl("Couldn't display large block !!!");
+	ft_putendl("-----------------------------------------------------------"
+		"----");
 	if (MALLOC_DEBUG == 5)
-	{
-		ft_putendl("-----------------------------------------------------------"
-			"----");
 		show_alloc(1);
-	}
 }
 
 void    malloc_dump(char *msg, void *ptr, size_t len)
