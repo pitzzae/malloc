@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:11:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 15:50:48 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/06 16:14:24 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void            print_hex_string(const char *s, const size_t len)
         if (i % 16 == 0 && i < len)
             ft_putstr("\n\t\t\t");
         else
-            ft_putchar(' ');
+            ft_putstr("  ");
     }
     ft_putchar('\n');
 }
