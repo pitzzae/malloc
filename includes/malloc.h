@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 10:55:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 23:50:31 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/23 17:04:14 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void				ft_bzero(void *b, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t len);
 void				print_hex(const char *s, const size_t len);
 void				print_hex_string(const char *s, const size_t len);
+void				set_block(t_block *b, t_block *n, t_block *p);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 16:04:34 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 23:20:58 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/23 17:03:01 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		split_block(t_page *p, t_block *b)
 {
 	t_block		*nb;
-	size_t      mem_width;
+	size_t		mem_width;
 
 	mem_width = page_size(p->type);
 	nb = (t_block*)(BDATA(b) + b->size);
@@ -53,6 +53,12 @@ static t_block	*block_insert(t_page *p, size_t size)
 		split_block(p, b);
 	p->first = b;
 	return (b);
+}
+
+void			set_block(t_block *b, t_block *n, t_block *p)
+{
+	b->next = n;
+	b->prev = p;
 }
 
 t_block			*block_alloc(size_t size)

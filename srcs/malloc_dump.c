@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 23:11:01 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 23:59:06 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/23 16:53:40 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-static void     ft_print_output(t_block *b)
+static void		ft_print_output(t_block *b)
 {
 	if (b->is_free == 0)
 	{
@@ -55,9 +55,9 @@ static void		show_block(t_block *b, size_t debug)
 	}
 }
 
-void    inspect_alloc(void *ptr)
+void			inspect_alloc(void *ptr)
 {
-	t_block     *b;
+	t_block		*b;
 
 	b = ptr - (BLOCK_SIZE + 1);
 	ft_putendl("------------------------BLOCK_INSPECT"
@@ -71,13 +71,13 @@ void    inspect_alloc(void *ptr)
 		show_alloc(1);
 }
 
-void    malloc_dump(char *msg, void *ptr, size_t len)
+void			malloc_dump(char *msg, void *ptr, size_t len)
 {
 	ft_putstr(msg);
 	ft_putstr(" ");
 	ft_putadd(ptr);
 	ft_putstr(" ");
 	ft_putnbr(len);
-	ft_putendl("");	
+	ft_putendl("");
 	inspect_alloc(ptr);
 }

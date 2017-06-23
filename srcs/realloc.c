@@ -6,7 +6,7 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 00:53:42 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 23:15:47 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/23 16:54:46 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,12 @@ static void		*realloc_inc(void *ptr, t_block *b, size_t size)
 	void		*tmp;
 
 	if (b->next != NULL && b->next->is_free == 1 &&
-            (b->next->size + b->size + BLOCK_SIZE) > size)
+		(b->next->size + b->size + BLOCK_SIZE) > size)
 	{
 		old_size = b->next->size;
 		next = b->next->next;
 		b->next += size - b->size;
-		b->next->next = next;
-		b->next->prev = b;
+		set_block(b->next, next, b);
 		b->next->size = old_size - (size - b->size);
 		b->next->is_free = 1;
 		b->size = size;
@@ -68,7 +67,7 @@ static void		*realloc_inc(void *ptr, t_block *b, size_t size)
 	else
 	{
 		tmp = ptr;
-        pthread_mutex_unlock(get_mmutex());
+		pthread_mutex_unlock(get_mmutex());
 		ptr = malloc(size);
 		ft_bzero(ptr, size);
 		ft_memcpy(ptr, tmp, b->size);
@@ -85,8 +84,7 @@ static void		*realloc_dec(void *ptr, t_block *b, size_t size)
 	{
 		nb = b;
 		nb += (BLOCK_SIZE + size);
-		nb->prev = b;
-		nb->next = b->next;
+		set_block(nb, b, b->next);
 		nb->size = b->size - (BLOCK_SIZE + size);
 		nb->is_free = 1;
 		b->next = nb;

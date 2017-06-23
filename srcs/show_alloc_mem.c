@@ -6,13 +6,13 @@
 /*   By: gtorresa <gtorresa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 11:34:04 by gtorresa          #+#    #+#             */
-/*   Updated: 2017/06/06 23:17:45 by gtorresa         ###   ########.fr       */
+/*   Updated: 2017/06/23 16:53:59 by gtorresa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-static void     ft_print_output(t_block *b, size_t debug)
+static void		ft_print_output(t_block *b, size_t debug)
 {
 	if (b->is_free == 0)
 	{
