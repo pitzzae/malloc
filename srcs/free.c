@@ -59,14 +59,13 @@ void			free(void *ptr)
 	if (ptr == NULL)
 		return ;
 	pthread_mutex_trylock(get_mmutex());
-	show_alloc(0);
-	ft_putadd(ptr);
-	ft_putendl("\n\n");
 	b = search_ptr(ptr);
 	if (b)
+	{
 		b->is_free = 1;
+		check_page(b);
+	}
 	if (b && MALLOC_DEBUG)
 		malloc_dump("\e[34mfree\e[0m", BDATA(b), b->size);
-	check_page(b);
 	pthread_mutex_unlock(get_mmutex());
 }

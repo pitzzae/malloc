@@ -41,8 +41,6 @@ void			free_all(void)
 
 void			del_page(t_page *page)
 {
-	ft_putadd(page);
-	ft_putendl(" page addr");
 	if (page->prev == NULL && page->next)
 		*get_first_page() = NULL;
 	if (page->prev != NULL)

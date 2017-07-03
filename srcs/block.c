@@ -44,22 +44,6 @@ void		check_last_block_size(t_page *p, t_block *b)
 			/ sizeof(char)) - PAGE_SIZE;
 }
 
-static void	remove_free_block(t_page *p)
-{
-	t_block	*b;
-
-	b = p->first;
-	while (b != NULL)
-	{
-		if (b->next != NULL && b->next->is_free == 1)
-		{
-			b->size += b->next->size + BLOCK_SIZE;
-			b->next = b->next->next;
-		}
-		b = b->next;
-	}
-}
-
 t_page		*block_parent_page(t_block *b)
 {
 	t_page	*iter;
@@ -69,8 +53,6 @@ t_page		*block_parent_page(t_block *b)
 	iter = first_page();
 	while (iter != NULL)
 	{
-		if (iter->first != NULL)
-			remove_free_block(iter);
 		if ((void*)iter < (void*)b && (void*)iter + iter->size +
 			BLOCK_SIZE > (void*)b)
 			return (iter);
